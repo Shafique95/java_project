@@ -288,7 +288,7 @@ const orbitsContainer = document.getElementById('orbits');
 
   // Optional theme toggle button
   const themeToggleBtn = document.createElement('button');
-  themeToggleBtn.textContent = 'Toggle Theme';
+  //themeToggleBtn.textContent = 'Toggle Theme';
   themeToggleBtn.className = "fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded shadow";
   document.body.appendChild(themeToggleBtn);
 
