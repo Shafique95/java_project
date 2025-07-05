@@ -32,14 +32,14 @@ public class UserService {
   private PasswordEncoder passwordEncoder;
 
   public boolean authenticate(LoginDto dto) {
+	  
       User user = repo.findFirstByEmailOrPhone(dto.getEmailOrPhone());
-      if (user == null) {
-          return false;
-      }
-      // Use passwordEncoder.matches() to verify raw password vs hashed password
-      boolean matches = passwordEncoder.matches(dto.getPassword(), user.getPassword());
-      System.out.println("🔒 Password match: " + matches);
-      return matches;
+      System.out.println("db password "+ user.getPassword());
+      System.out.println("user password from ui "+dto.getPassword());
+      if (user == null) return false;
+
+      // এটি গুরুত্বপূর্ণ – পাসওয়ার্ড ম্যাচিং এর সঠিক নিয়ম
+      return passwordEncoder.matches(dto.getPassword(), user.getPassword());
   }
 
 }

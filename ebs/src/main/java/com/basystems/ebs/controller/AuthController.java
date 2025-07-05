@@ -40,13 +40,16 @@ public class AuthController {
   @PostMapping("/login")
   public String loginUser(LoginDto dto, HttpSession session, Model model) {
     System.out.println("Login attempt: " + dto.getEmailOrPhone());
+    System.out.println("user password is "+ dto.getPassword());
 
     boolean authenticated = userService.authenticate(dto);
+    System.out.println("checkign auth"+authenticated);
+ 
 
     if (authenticated) {
       // Manually set user session attribute (you can set user details here)
       session.setAttribute("loggedInUser", dto.getEmailOrPhone());
-      return "redirect:/dashboard";
+      return "redirect:/home";
     } else {
       model.addAttribute("error", "Invalid email or password");
       return "auth/login";

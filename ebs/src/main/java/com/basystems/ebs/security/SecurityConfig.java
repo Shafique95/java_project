@@ -8,22 +8,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
       .csrf().disable()
-      .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/auth/**", "/css/**", "/js/**").permitAll()
-        .anyRequest().authenticated())
-      .formLogin().disable()  // Disable Spring Security’s default form login
-      .logout()
-        .logoutSuccessUrl("/auth/login?logout=true");
-
+      .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())  // সব URL খোলা রাখবে
+      .formLogin().disable()
+      .logout().disable();
     return http.build();
   }
 
@@ -32,3 +26,4 @@ public class SecurityConfig {
     return new BCryptPasswordEncoder();
   }
 }
+
