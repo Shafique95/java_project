@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Galaxy Solar System Perfect Orbits</title>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/galaxy-css/style.css" />
+
+
+</head>
+<body class="bg-black dark:bg-gray-900">
+
+  <!-- Fire Overlay -->
+  <div id="fire-bg" aria-hidden="true"></div>
+
+  <!-- Rain -->
+  <div id="raindrop-container" class="absolute inset-0 z-20 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Leaves -->
+  <div id="leaf-container" class="absolute inset-0 z-30 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Sound Control Button -->
+  <button id="soundToggle" class="sound-btn" aria-label="Toggle sound" title="Toggle Sound">
+    🔊
+  </button>
+
+  <!-- Solar system wrapper -->
+  <div id="solar-wrapper" role="main" aria-label="Solar system">
+    <!-- Orbits container -->
+    <div id="orbits" aria-live="polite"></div>
+
+    <!-- Sun fixed center -->
+    <div id="sun" aria-label="Sun"></div>
+  </div>
+
+  <!-- Main content card -->
+  <div id="card" class="glass-card wind relative z-40 max-w-lg mx-auto mt-8 p-6 cursor-pointer" role="region" aria-live="polite">
+    <h1 th:text="${title}" class="text-4xl font-bold mb-4">🔥 Galaxy ERP Portal</h1>
+    <p th:text="${msg}" class="text-lg mb-6">Welcome to the Sorna ERP galaxy interface with fire, rain & stars!</p>
+    <div id="danceTrigger" class="py-4 bg-white bg-opacity-20 rounded-xl hover:bg-opacity-30 transition duration-200" role="button" tabindex="0" aria-pressed="false" aria-label="Toggle dance animation">
+      <h2 class="text-2xl font-semibold text-yellow-300">✨ Click to Dance!</h2>
+    </div>
+  </div>
+
+  <!-- Grass on bottom -->
+  <div class="bushes" aria-hidden="true"></div>
+
+<!-- Grass on bottom -->
+<div class="bushes" aria-hidden="true"></div>
+<script th:src="@{/galaxy-js/main.js}"></script>
+
+</body>
+</html>

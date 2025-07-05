@@ -1,0 +1,83 @@
+# === Global OS Files ===
+*.DS_Store
+Thumbs.db
+
+# === Java / Spring Boot (Maven or Gradle) ===
+/target/
+/build/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven-specific
+.mvn/
+**/target/
+dependency-reduced-pom.xml
+release.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# Gradle-specific (if applicable)
+.gradle/
+build/
+
+# === STS / Eclipse IDE ===
+.settings/
+.project
+.classpath
+.apt_generated/
+.factorypath
+.springBeans
+/.sts4-cache/
+.metadata/
+
+# === IntelliJ IDEA (if sometimes used) ===
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# === VS Code (if sometimes used) ===
+.vscode/
+
+# === Logs & Temp Files ===
+*.log
+*.tmp
+*.bak
+
+# === Environment Files ===
+.env
+.env.local
+*.env
+
+# === React Frontend (Assuming in /frontend folder) ===
+/frontend/node_modules/
+/frontend/build/
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+/frontend/.eslintcache
+/frontend/coverage/
+frontend/yarn-error.log
+frontend/npm-debug.log*
+frontend/package-lock.json
+frontend/yarn.lock
+
+# === Optional (OS and Tooling) ===
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+*.tmp
+
+# === IDE Backup ===
+*.~*
+
+# === Git ===
+*.orig

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - Galaxy App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center p-4">
+
+  <!-- Page Title Above the Form -->
+  <!-- App Title -->
+   <header>
+     <h1 class="text-5xl font-extrabold mb-6 text-[#1877F2] select-none text-center">
+       Galaxy App
+     </h1>
+   </header>
+
+  <!-- Registration form card -->
+  <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-xl">
+
+    <h2 class="text-3xl font-bold mb-1 text-center">Create a new account</h2>
+    <p class="text-sm text-gray-500 mb-6 text-center">It’s quick and easy.</p>
+
+    <form th:action="@{/auth/register}" method="post" class="space-y-4">
+
+      <div class="flex gap-2">
+        <input type="text" name="firstName" placeholder="First name" class="w-1/2 px-4 py-2 border rounded focus:outline-none focus:ring" required />
+        <input type="text" name="lastName" placeholder="Surname" class="w-1/2 px-4 py-2 border rounded focus:outline-none focus:ring" required />
+      </div>
+
+      <input type="text" name="emailOrPhone" placeholder="Mobile number or email address" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+
+      <input type="password" name="password" placeholder="New password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" required />
+
+      <div>
+        <label class="text-sm text-gray-700 font-semibold">Date of birth</label>
+        <div class="flex gap-2 mt-1">
+          <select name="birthDay" class="w-1/3 px-2 py-2 border rounded">
+            <option value="" disabled selected>Day</option>
+            <!-- Days 1 to 31 -->
+            <script>
+              for(let i=1; i<=31; i++) {
+                document.write(`<option value="${i}">${i}</option>`);
+              }
+            </script>
+          </select>
+          <select name="birthMonth" class="w-1/3 px-2 py-2 border rounded">
+            <option value="" disabled selected>Month</option>
+            <option value="1">Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+            <option value="4">Apr</option>
+            <option value="5">May</option>
+            <option value="6">Jun</option>
+            <option value="7">Jul</option>
+            <option value="8">Aug</option>
+            <option value="9">Sep</option>
+            <option value="10">Oct</option>
+            <option value="11">Nov</option>
+            <option value="12">Dec</option>
+          </select>
+          <select name="birthYear" class="w-1/3 px-2 py-2 border rounded">
+            <option value="" disabled selected>Year</option>
+            <script>
+              const currentYear = new Date().getFullYear();
+              for(let y=currentYear; y>=currentYear-100; y--) {
+                document.write(`<option value="${y}">${y}</option>`);
+              }
+            </script>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-700 font-semibold">Gender</label>
+        <div class="flex gap-3 mt-1">
+          <label class="flex items-center gap-2 border px-4 py-2 rounded w-full cursor-pointer">
+            <input type="radio" name="gender" value="Female" class="form-radio" /> Female
+          </label>
+          <label class="flex items-center gap-2 border px-4 py-2 rounded w-full cursor-pointer">
+            <input type="radio" name="gender" value="Male" class="form-radio" /> Male
+          </label>
+          <label class="flex items-center gap-2 border px-4 py-2 rounded w-full cursor-pointer">
+            <input type="radio" name="gender" value="Custom" id="genderCustomRadio" class="form-radio" /> Custom
+          </label>
+        </div>
+      </div>
+
+      <!-- Show if Custom selected -->
+      <div id="customGenderSection" class="hidden mt-4 space-y-4">
+
+        <!-- Pronoun -->
+        <select name="pronoun" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring">
+          <option value="" disabled selected>Select your pronoun</option>
+          <option value="She: 'Wish her a happy birthday!'">She: "Wish her a happy birthday!"</option>
+          <option value="He: 'Wish him a happy birthday!'">He: "Wish him a happy birthday!"</option>
+          <option value="They: 'Wish them a happy birthday!'">They: "Wish them a happy birthday!"</option>
+        </select>
+
+        <!-- Custom Gender Text -->
+        <input type="text" name="customGender" placeholder="Gender (optional)" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring" />
+
+        <!-- Extra Mobile or Email -->
+        <input
+          type="text"
+          name="customEmailOrPhone"
+          placeholder="Mobile number or email address"
+          class="w-full px-4 py-2 border rounded focus:outline-none focus:ring"
+          required
+        />
+
+        <!-- Extra Password -->
+        <input
+          type="password"
+          name="customPassword"
+          placeholder="New password"
+          class="w-full px-4 py-2 border rounded focus:outline-none focus:ring"
+          required
+        />
+      </div>
+
+      <p class="text-xs text-gray-500 leading-snug">
+        By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.
+      </p>
+
+      <button
+        type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition"
+      >
+        Sign Up
+      </button>
+
+      <div class="text-center mt-4">
+        <a href="/auth/login" class="text-blue-600 hover:underline">Already have an account?</a>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    const customRadio = document.getElementById('genderCustomRadio');
+    const customSection = document.getElementById('customGenderSection');
+    const allGenders = document.querySelectorAll('input[name="gender"]');
+
+    allGenders.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (customRadio.checked) {
+          customSection.classList.remove('hidden');
+          // Make custom extra fields required
+          customSection.querySelectorAll('input, select').forEach(el => {
+            el.setAttribute('required', 'required');
+          });
+        } else {
+          customSection.classList.add('hidden');
+          // Remove required from custom extra fields
+          customSection.querySelectorAll('input, select').forEach(el => {
+            el.removeAttribute('required');
+            if (el.tagName.toLowerCase() === 'input') el.value = '';
+            else if (el.tagName.toLowerCase() === 'select') el.selectedIndex = 0;
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

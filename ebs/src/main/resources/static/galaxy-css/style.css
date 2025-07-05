@@ -1,0 +1,323 @@
+
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: radial-gradient(ellipse at bottom, #1e293b, #000000);
+    color: white;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #solar-wrapper {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    margin: 2rem auto;
+    background: radial-gradient(circle at center, #0b1120, #000000 80%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    user-select: none;
+    overflow: visible;
+  }
+
+  #orbits {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .orbit-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  #sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    background: radial-gradient(circle, #fef3c7, #fbbf24, #b45309);
+    border-radius: 50%;
+    box-shadow:
+      0 0 50px 20px rgba(254, 243, 199, 0.8),
+      0 0 100px 50px rgba(251, 191, 36, 0.6);
+    filter: drop-shadow(0 0 10px #fbbf24);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .planet {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.7);
+    pointer-events: auto;
+    z-index: 15;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .planet-label {
+    position: absolute;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  /* Fire Overlay */
+  #fire-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://media.tenor.com/m_jR9ZQntWwAAAAd/fire-loop.gif') no-repeat center center fixed;
+    background-size: cover;
+    z-index: 5;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.35;
+  }
+
+  /* Rain drops */
+  .raindrop {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    animation: fall 1s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(400px); opacity: 0; }
+  }
+
+  /* Leaves */
+  .leaf {
+    position: absolute;
+    top: -40px;
+    width: 20px;
+    height: 20px;
+    background-image: url("https://cdn-icons-png.flaticon.com/128/7662/7662689.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: leafFall linear infinite;
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  @keyframes leafFall {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Grass */
+  .bushes {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    background: url('https://cdn.pixabay.com/photo/2013/07/12/17/35/grass-153282_960_720.png') repeat-x bottom;
+    background-size: contain;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  /* Glass Card */
+  .glass-card {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    z-index: 40;
+    position: relative;
+    max-width: 600px;
+    margin: 2rem auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    user-select: none;
+  }
+
+  .dark .glass-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Sway */
+  @keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+  }
+
+  .wind {
+    animation: sway 4s ease-in-out infinite;
+  }
+
+  /* Dancing */
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Sound Control Button */
+  .sound-btn {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    z-index: 60;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+  }
+
+  .sound-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    animation: none;
+  }
+
+  .sound-btn.muted {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.5);
+    animation: none;
+  }
+
+  .planet:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,255,255,0.9);
+    animation: planetGlow 0.5s ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes planetGlow {
+    0% { box-shadow: 0 0 10px rgba(255,255,255,0.7); }
+    50% { box-shadow: 0 0 30px rgba(255,255,255,1); }
+    100% { box-shadow: 0 0 10px rgba(255,255,255,0.7); }
+  }
+
+  /* Dynamic Screen Effects */
+  .screen-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+    z-index: 99;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+  }
+
+  .screen-flash.active {
+    opacity: 1;
+  }
+
+  /* Sound Visualizer */
+  .sound-visualizer {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 200px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 5px;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .sound-visualizer.active {
+    opacity: 1;
+  }
+
+  .sound-bar {
+    width: 3px;
+    height: 10px;
+    background: linear-gradient(to top, #3b82f6, #10b981, #f59e0b);
+    border-radius: 2px;
+    transform: scaleY(0.3);
+    transition: transform 0.1s ease;
+  }
+
+  /* Planet Info Panel */
+  .planet-info {
+    position: fixed;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 1rem;
+    color: white;
+    z-index: 70;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    max-width: 250px;
+  }
+
+  .planet-info.active {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .planet-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #fbbf24;
+  }
+
+  .planet-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
