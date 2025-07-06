@@ -8,6 +8,9 @@ public class SpringBootFundamentalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootFundamentalApplication.class, args);
+		System.out.println(">>>>>>>>>>>>>>>>>Welcome To SpringBoot<<<<<<<<<<<<<<<<<<<");
+		System.out.println("lafjlsjfklsd");
+
 	}
 
 }
