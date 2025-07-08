@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Writer {
 
-    private Author author;
-    private Book book;
+    private final Author author;
+    private final Book book;
 
     public Writer(Author author, Book book) {
         System.out.println("🧠 Writer Bean created with dependencies injected!");
