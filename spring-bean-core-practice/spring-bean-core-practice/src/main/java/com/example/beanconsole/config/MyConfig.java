@@ -1,6 +1,5 @@
-package com.example.beanconsole;
+package com.example.beanconsole.config;
 
-import com.example.beanconsole.Writer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

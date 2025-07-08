@@ -1,4 +1,4 @@
-package com.example.beanconsole;
+package com.example.beanconsole.book;
 
 public class Book {
     private final String title;

@@ -1,4 +1,4 @@
-package com.example.beanconsole;
+package com.example.beanconsole.author;
 
 import org.springframework.stereotype.Component;
 
