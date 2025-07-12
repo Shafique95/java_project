@@ -15,7 +15,7 @@ public class MyConfig {
         System.out.println("📘 Book Bean created (Manual via @Bean)");
         return new Book("Salmon","Shafiqul Islam ");
     }
-@Bean
+    @Bean
     public MarketToSellBook setMarketBeantToIoCContainer(){
         return  new MarketToSellBook();
     }
